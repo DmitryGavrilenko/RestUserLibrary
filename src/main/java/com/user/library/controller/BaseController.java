@@ -1,7 +1,6 @@
 package com.user.library.controller;
 
 import com.user.library.model.Book;
-import com.user.library.repository.BookRepository;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,7 +20,7 @@ public class BaseController {
     @GetMapping(value =  "/get/{id}")
     public ResponseEntity get(@PathVariable Integer id){
 
-        Optional<Book> t = jpaRepository.findById(id);
+        Optional<Object> t = jpaRepository.findById(id);
 
         return new ResponseEntity(t, HttpStatus.OK);
     }

@@ -41,7 +41,7 @@ public class Book extends BaseModel{
     public void setUser(User user) {
         this.user = user;
     }
-//
+
 //    public List<Author> getAuthors() {
 //        return authors;
 //    }
