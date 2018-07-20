@@ -12,10 +12,10 @@ import javax.annotation.Resource;
 @RequestMapping("/author")
 public class AuthorController extends BaseController {
 
-    @Autowired
     private AuthorRepository authorRepository;
 
     public AuthorController(AuthorRepository authorRepository) {
-        super(authorRepository);
+        this.authorRepository = authorRepository;
+        super.setJpaRepository(authorRepository);
     }
 }

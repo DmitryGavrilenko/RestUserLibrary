@@ -14,7 +14,7 @@ public class BaseController {
 
     private JpaRepository jpaRepository;
 
-    public BaseController(JpaRepository jpaRepository){
+    public void setJpaRepository(JpaRepository jpaRepository) {
         this.jpaRepository = jpaRepository;
     }
 
