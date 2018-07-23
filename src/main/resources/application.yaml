@@ -11,6 +11,8 @@ spring:
       hibernate:
         jdbc:
           lob.non_contextual_creation: true
+  flyway:
+    locations: classpath:db
 #    hibernate:
 #      ddl-auto: create
 server:
