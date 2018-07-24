@@ -1,5 +1,8 @@
 package com.user.library.model;
 
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
+
 import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
@@ -15,7 +18,8 @@ public class Book extends BaseModel{
     @ManyToOne(cascade = CascadeType.ALL)
     private User user;
 
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "books")
+    @LazyCollection(LazyCollectionOption.TRUE)
+    @ManyToMany(cascade = CascadeType.ALL, mappedBy = "books")
     private List<Author> authors;
 
     public String getTitle() {

@@ -1,6 +1,9 @@
 package com.user.library.model;
 
 
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
+
 import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
@@ -11,7 +14,8 @@ public class Author extends BaseModelForAuthorAndUser {
 
     private Date birthday;
 
-    @ManyToMany(cascade = CascadeType.DETACH, fetch = FetchType.LAZY)
+    @LazyCollection(LazyCollectionOption.TRUE)
+    @ManyToMany(cascade = CascadeType.DETACH)
     private List<Book> books;
 
     public Date getBirthday() {

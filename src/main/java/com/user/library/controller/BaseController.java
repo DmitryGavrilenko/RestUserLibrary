@@ -1,15 +1,14 @@
 package com.user.library.controller;
 
-import com.user.library.model.Book;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
-import java.io.Serializable;
 import java.util.Optional;
 
-public class BaseController{
+public class BaseController<E>{
 
 
     private JpaRepository jpaRepository;
@@ -21,34 +20,36 @@ public class BaseController{
     @GetMapping(value =  "/get/{id}")
     public ResponseEntity get(@PathVariable Integer id){
 
-        Optional<Object> t = jpaRepository.findById(id);
+        Optional<E> entity = jpaRepository.findById(id);
 
-        return new ResponseEntity(t, HttpStatus.OK);
+        return new ResponseEntity(entity, HttpStatus.OK);
     }
 
+    @PostMapping(value = "/save")
+    @Transactional
+    public ResponseEntity save(@RequestBody E entity){
 
-    @PostMapping(value = "/save/")
-    public ResponseEntity save(@RequestBody Book t){
+        jpaRepository.save(entity);
 
-        jpaRepository.save(t);
-
-        return new ResponseEntity(t, HttpStatus.CREATED);
+        return new ResponseEntity(entity, HttpStatus.CREATED);
     }
 
-    @PutMapping(value = "/update/")
-    public ResponseEntity update(@RequestBody Book t){
+    @PutMapping(value = "/update")
+    @Transactional
+    public ResponseEntity update(@RequestBody E entity){
 
-        jpaRepository.save(t);
+        jpaRepository.save(entity);
 
-        return new ResponseEntity(t, HttpStatus.OK);
+        return new ResponseEntity(entity, HttpStatus.OK);
     }
 
-    @DeleteMapping(value = "/delete/")
-    public ResponseEntity delete(@RequestBody Book t){
+    @DeleteMapping(value = "/delete")
+    @Transactional
+    public ResponseEntity delete(@RequestBody E entity){
 
-        jpaRepository.delete(t);
+        jpaRepository.delete(entity);
 
-        return new ResponseEntity(t, HttpStatus.OK);
+        return new ResponseEntity(entity, HttpStatus.OK);
     }
 
 }

@@ -19,8 +19,7 @@ CREATE TABLE IF NOT EXISTS author(
   birthday DATE
 );
 
-CREATE TABLE IF NOT EXISTS book_user(
-  id SERIAL PRIMARY KEY,
-  user_id INTEGER REFERENCES n_user,
-  book_id INTEGER REFERENCES book
+CREATE TABLE IF NOT EXISTS author_books(
+  authors_id INTEGER REFERENCES author(id),
+  books_id INTEGER REFERENCES book(id)
 );

@@ -1,12 +1,13 @@
 package com.user.library.controller;
 
+import com.user.library.model.User;
 import com.user.library.repository.UserRepository;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/user")
-public class UserController extends BaseController{
+public class UserController extends BaseController<User>{
 
     private UserRepository userRepository;
 

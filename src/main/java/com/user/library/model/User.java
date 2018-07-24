@@ -1,5 +1,8 @@
 package com.user.library.model;
 
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -9,7 +12,8 @@ public class User extends BaseModelForAuthorAndUser {
 
     private String email;
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "user")
+    @LazyCollection(LazyCollectionOption.TRUE)
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
     private List<Book> books;
 
     public String getEmail() {

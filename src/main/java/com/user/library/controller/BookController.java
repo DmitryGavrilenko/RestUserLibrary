@@ -1,13 +1,14 @@
 package com.user.library.controller;
 
 
+import com.user.library.model.Book;
 import com.user.library.repository.BookRepository;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping(value = "/book")
-public class BookController extends BaseController{
+public class BookController extends BaseController<Book>{
 
     private BookRepository bookRepository;
 
